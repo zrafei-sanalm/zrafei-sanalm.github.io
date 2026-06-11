@@ -48,9 +48,9 @@ body {
 /* Dönme Animasyonu */
 @keyframes dondur {
     0% {
-        transform: rotateX(-20deg) rotateY(0deg);
+        transform: rotateX(20deg) rotateY(0deg);
     }
     100% {
-        transform: rotateX(-20deg) rotateY(360deg);
+        transform: rotateX(20deg) rotateY(360deg);
     }
 }
