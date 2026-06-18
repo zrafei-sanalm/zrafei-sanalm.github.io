@@ -1,11 +1,30 @@
-<script>
-  const backgrounds = [
-    'https://i.hizliresim.com/mhwcwcz.jpeg',
-    'https://i.hizliresim.com/qxar2ag.jpg'
-  ];
-  const random = backgrounds[Math.floor(Math.random() * backgrounds.length)];
-  document.body.style.backgroundImage = 'url("' + random + '")';
-  document.body.style.backgroundSize = 'cover';
-  document.body.style.backgroundPosition = 'center';
-  document.body.style.backgroundRepeat = 'no-repeat';
-</script>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- site içeriğin buraya -->
+
+  <script>
+    const backgrounds = [
+      'https://i.hizliresim.com/mhwcwcz.jpeg',
+      'https://i.hizliresim.com/qxar2ag.jpg'
+    ];
+    const random = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+    document.body.style.backgroundImage = 'url("' + random + '")';
+  </script>
+</body>
+</html>
