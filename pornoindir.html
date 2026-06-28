@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mudu Home – Isparta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #F5F0E8;
+      --warm:    #EDE5D8;
+      --sand:    #C8B89A;
+      --espresso:#3A2E24;
+      --copper:  #A0714F;
+      --white:   #FDFAF6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--espresso);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--sand);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--espresso);
+    }
+    .nav-logo span { color: var(--copper); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--espresso);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--copper); }
+    .nav-cta {
+      background: var(--espresso);
+      color: var(--cream) !important;
+      padding: 10px 22px;
+      border-radius: 2px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--copper) !important; color: var(--cream) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px 80px 72px;
+    }
+    .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--espresso);
+      margin-bottom: 28px;
+    }
+    .hero-title em { font-style: italic; color: var(--copper); }
+    .hero-sub {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #6B5B4E;
+      max-width: 380px;
+      margin-bottom: 44px;
+    }
+    .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--espresso);
+      color: var(--cream);
+      padding: 14px 32px;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--copper); }
+    .btn-ghost {
+      border: 1px solid var(--espresso);
+      color: var(--espresso);
+      padding: 14px 32px;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: var(--espresso); color: var(--cream); }
+
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+      background: var(--warm);
+    }
+    .hero-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: 40px; left: 40px;
+      background: var(--white);
+      padding: 16px 22px;
+      border-left: 3px solid var(--copper);
+      font-size: 0.78rem;
+    }
+    .hero-badge strong { display: block; font-weight: 500; font-size: 1rem; margin-top: 4px; }
+
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: var(--espresso);
+      color: var(--cream);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-track span {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-right: 60px;
+    }
+    .marquee-track span.dot { color: var(--copper); margin-right: 60px; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 100px 72px; }
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--espresso);
+      margin-bottom: 20px;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      background: var(--white);
+    }
+    .about-img {
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #6B5B4E;
+      margin-bottom: 20px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--sand);
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--copper);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.78rem; color: #6B5B4E; margin-top: 6px; }
+
+    /* ── WORKS ── */
+    .works { background: var(--cream); }
+    .works-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 2px;
+      background: var(--warm);
+      cursor: pointer;
+    }
+    .gallery-item.tall { grid-row: span 2; }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item:not(.tall) { height: 280px; }
+    .gallery-item.tall { height: 576px; }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--espresso);
+      color: var(--cream);
+    }
+    .services .section-title { color: var(--cream); }
+    .services .section-label { color: var(--sand); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+      border: 1px solid rgba(200,184,154,0.2);
+    }
+    .service-card {
+      padding: 48px 36px;
+      border-right: 1px solid rgba(200,184,154,0.2);
+      transition: background 0.3s;
+    }
+    .service-card:last-child { border-right: none; }
+    .service-card:hover { background: rgba(160,113,79,0.15); }
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 16px;
+      color: var(--cream);
+    }
+    .service-card p { font-size: 0.88rem; line-height: 1.7; color: var(--sand); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--warm); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .tcard {
+      background: var(--white);
+      padding: 36px 32px;
+      border-radius: 2px;
+      border-top: 3px solid var(--copper);
+    }
+    .tcard-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--espresso);
+      margin-bottom: 24px;
+    }
+    .tcard-author { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; }
+    .stars { color: var(--copper); font-size: 0.9rem; margin-bottom: 16px; }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #6B5B4E;
+      margin-bottom: 32px;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .contact-detail .icon {
+      width: 40px; height: 40px;
+      background: var(--warm);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-detail div strong { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--copper); margin-bottom: 4px; }
+    .contact-detail div span { font-size: 0.9rem; color: var(--espresso); }
+
+    /* MAP EMBED */
+    .map-wrap {
+      border-radius: 2px;
+      overflow: hidden;
+      border: 1px solid var(--sand);
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 420px;
+      border: none;
+      display: block;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--espresso);
+      color: var(--sand);
+      padding: 48px 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .footer-logo span { color: var(--copper); }
+    footer p { font-size: 0.78rem; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 0.78rem; color: var(--sand); text-decoration: none; }
+    .footer-links a:hover { color: var(--cream); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; height: auto; }
+      .hero-visual { height: 55vw; }
+      .hero-text { padding: 60px 24px 40px; }
+      section { padding: 72px 24px; }
+      .about, .contact { grid-template-columns: 1fr; gap: 40px; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .gallery-item.tall { grid-row: span 1; height: 280px; }
+      .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Mudu<span>Home</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">Hakkımızda</a></li>
+      <li><a href="#works">Çalışmalarımız</a></li>
+      <li><a href="#services">Hizmetler</a></li>
+      <li><a href="#contact" class="nav-cta">İletişim</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <p class="eyebrow">Isparta'nın Ev Eşyaları Uzmanı</p>
+      <h1 class="hero-title">
+        Evinizi<br><em>Hayalinize</em><br>Dönüştürün
+      </h1>
+      <p class="hero-sub">
+        Kaliteli ev eşyaları ve modern dekorasyon çözümleriyle yaşam alanlarınızı yeniden tasarlıyoruz. Her ürün, her detay özenle seçilmiştir.
+      </p>
+      <div class="btn-row">
+        <a href="#works" class="btn-primary">Çalışmalarımızı Keşfedin</a>
+        <a href="#contact" class="btn-ghost">Bize Ulaşın</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img
+        src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1000&auto=format&fit=crop&q=80"
+        alt="Modern oturma odası dekorasyonu"
+      />
+      <div class="hero-badge">
+        <span>Isparta Merkez</span>
+        <strong>🟢 Açık · 00:00'a kadar</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span>Oturma Odası</span><span class="dot">✦</span>
+      <span>Yatak Odası</span><span class="dot">✦</span>
+      <span>Mutfak & Yemek</span><span class="dot">✦</span>
+      <span>Dekorasyon</span><span class="dot">✦</span>
+      <span>Aydınlatma</span><span class="dot">✦</span>
+      <span>Tekstil</span><span class="dot">✦</span>
+      <span>Ev Aksesuarları</span><span class="dot">✦</span>
+      <span>İç Tasarım</span><span class="dot">✦</span>
+      <span>Oturma Odası</span><span class="dot">✦</span>
+      <span>Yatak Odası</span><span class="dot">✦</span>
+      <span>Mutfak & Yemek</span><span class="dot">✦</span>
+      <span>Dekorasyon</span><span class="dot">✦</span>
+      <span>Aydınlatma</span><span class="dot">✦</span>
+      <span>Tekstil</span><span class="dot">✦</span>
+      <span>Ev Aksesuarları</span><span class="dot">✦</span>
+      <span>İç Tasarım</span><span class="dot">✦</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-img">
+      <img
+        src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&auto=format&fit=crop&q=80"
+        alt="Mudu Home mağaza"
+      />
+    </div>
+    <div class="about-text">
+      <p class="section-label">Hakkımızda</p>
+      <h2 class="section-title">Güzel Evler<br>İçin Güzel Ürünler</h2>
+      <p>Mudu Home olarak Isparta'da ev eşyaları ve dekorasyon alanında yıllardır hizmet vermekteyiz. Müşterilerimizin yaşam alanlarını dönüştürmek için en kaliteli ürünleri titizlikle seçiyor, uzman danışmanlık hizmeti sunuyoruz.</p>
+      <p>Modern ve klasik çizgileri harmanlayan koleksiyonlarımızla her tarza uygun çözümler üretiyoruz. Sizi dinliyor, hayalinizdeki evi birlikte yaratıyoruz.</p>
+      <div class="stats">
+        <div>
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Yıllık Deneyim</div>
+        </div>
+        <div>
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Mutlu Müşteri</div>
+        </div>
+        <div>
+          <div class="stat-num">1000+</div>
+          <div class="stat-label">Ürün Çeşidi</div>
+        </div>
+        <div>
+          <div class="stat-num">7/7</div>
+          <div class="stat-label">Hizmet</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section class="works" id="works">
+    <div class="works-header">
+      <div>
+        <p class="section-label">Çalışmalarımız</p>
+        <h2 class="section-title">Dönüştürdüğümüz<br>Yaşam Alanları</h2>
+      </div>
+      <a href="#contact" class="btn-ghost">Tümünü Gör</a>
+    </div>
+    <div class="gallery">
+      <!-- Tall left -->
+      <div class="gallery-item tall">
+        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&auto=format&fit=crop&q=80" alt="Çalışma 1"/>
+      </div>
+      <!-- Top middle -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&auto=format&fit=crop&q=80" alt="Çalışma 2"/>
+      </div>
+      <!-- Top right -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&auto=format&fit=crop&q=80" alt="Çalışma 3"/>
+      </div>
+      <!-- Bottom middle -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800&auto=format&fit=crop&q=80" alt="Çalışma 4"/>
+      </div>
+      <!-- Bottom right -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop&q=80" alt="Çalışma 5"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <p class="section-label">Hizmetlerimiz</p>
+    <h2 class="section-title">Size Neler Sunuyoruz?</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🛋️</div>
+        <h3>Mobilya & Döşeme</h3>
+        <p>Koltuk takımlarından yatak odası setlerine kadar geniş mobilya koleksiyonumuzla evinize en uygun çözümleri sunuyoruz.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>Dekorasyon Danışmanlığı</h3>
+        <p>Uzman ekibimiz renk, doku ve stil seçimlerinde size rehberlik ederek hayalinizdeki mekânı birlikte tasarlıyor.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💡</div>
+        <h3>Aydınlatma Çözümleri</h3>
+        <p>Atmosfer yaratan modern aydınlatma sistemleri ve dekoratif lambalar ile mekânlarınıza hayat katıyoruz.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <p class="section-label">Müşteri Yorumları</p>
+    <h2 class="section-title">Müşterilerimiz<br>Ne Diyor?</h2>
+    <div class="testimonials-grid">
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-quote">"Mudu Home'dan aldığımız oturma odası takımı harikaydı. Kalite ve fiyat dengesi mükemmel, hem ürünler hem de hizmet çok iyiydi."</p>
+        <div class="tcard-author">— Fatma K., Isparta</div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-quote">"Evimizi komple yeniledik, her şeyi Mudu Home'dan aldık. Danışmanlık hizmeti sayesinde doğru seçimler yaptık, çok memnunuz."</p>
+        <div class="tcard-author">— Mehmet A., Isparta</div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-quote">"Ürün çeşitliliği ve fiyatlar gerçekten çok iyi. Çalışanlar ilgili ve yardımcı, Isparta'da böyle bir mağaza olması büyük avantaj."</p>
+        <div class="tcard-author">— Ayşe T., Isparta</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-info">
+      <p class="section-label">İletişim</p>
+      <h2 class="section-title">Bize Ulaşın</h2>
+      <p>Ürünlerimiz veya hizmetlerimiz hakkında bilgi almak için bizi arayabilir ya da mağazamıza gelebilirsiniz. Size yardımcı olmaktan memnuniyet duyarız.</p>
+
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        <div>
+          <strong>Adres</strong>
+          <span>Pirimehmet Mah. 1739 Sokak 9-11 44, 32120 Merkez/Isparta</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">📞</div>
+        <div>
+          <strong>Telefon</strong>
+          <span><a href="tel:+905435437532" style="color:var(--espresso);text-decoration:none;">0543 543 75 32</a></span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">🕐</div>
+        <div>
+          <strong>Çalışma Saatleri</strong>
+          <span>Her Gün Açık · Gece 00:00'a kadar</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        <div>
+          <strong>Konum</strong>
+          <span>Isparta Merkez</span>
+        </div>
+      </div>
+
+      <br/>
+      <a href="tel:+905435437532" class="btn-primary">Hemen Ara</a>
+    </div>
+
+    <div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3160.1!2d30.5537!3d37.7644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c59f3b3b3b3b3b%3A0x3b3b3b3b3b3b3b3b!2sPirimehmet%20Mah.%2C%201739%20Sk.%209-11%2C%2032120%20Merkez%2FIsparta!5e0!3m2!1str!2str!4v1234567890"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mudu Home Konum"
+        ></iframe>
+      </div>
+      <p style="margin-top:12px; font-size:0.8rem; color:#6B5B4E;">
+        📍 Pirimehmet Mah. 1739 Sokak 9-11 44, Merkez / Isparta
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Mudu<span>Home</span></div>
+    <p>© 2025 Mudu Home. Isparta'nın Ev Eşyaları Uzmanı.</p>
+    <ul class="footer-links">
+      <li><a href="#about">Hakkımızda</a></li>
+      <li><a href="#works">Çalışmalar</a></li>
+      <li><a href="#contact">İletişim</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
